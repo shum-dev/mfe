@@ -1,0 +1,43 @@
+name: deploy-container
+
+# track ...
+on:
+  # ... push events ...
+  push:
+    # ... on the branch ...
+    branches:
+      # ... main
+      - main
+    paths:
+      # only run this workflow when we make change specifically to "container" project
+      - container/**
+
+# set up execution environment to inside of the "container" directory
+# all different commands that we are going to run will be executed inside the "container" folder
+defaults:
+  run:
+    working-directory: "container"
+
+# all the jobs listed here run in parallel
+jobs:
+  # this job is going to build and then deploy our project
+  build:
+    # virtual machine operation system
+    runs-on: ubuntu-latest
+
+    steps:
+      # first of all we need to make pull of our latest code to the virtual machine
+      - uses: actions/checkout@v2
+      # install deps
+      - run: npm install
+      # build the project
+      - run: npm run build
+
+      # sync bundle files with AWS S3:
+      # we use AWS cli for Github actions
+      - uses: chrislennon/action-aws-cli@1.1
+      # and push our dist folder to AWS S3
+      - run: aws s3 sync dist s3://${{ secrets.AWS_S3_BUCKET_NAME }}/container/latest/
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
