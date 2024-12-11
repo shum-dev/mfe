@@ -19,6 +19,7 @@ const prodConfig = {
   output: {
     // set a template for hashing output files
     filename: "[name].[contenthash].js",
+    publicPath: "/container/latest/",
   },
   plugins: [
     new ModuleFederationPlugin({
