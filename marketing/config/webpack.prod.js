@@ -7,10 +7,6 @@ const commonConfig = require("./webpack.common");
 
 const packg = require("../package.json");
 
-// this variable wiil hold the value of MFE url where it will be deployed to
-// we will get to know exact value for it after we deploy the MFE
-const domain = process.env.PRODUCTION_DOMAIN;
-
 const prodConfig = {
   // changing the mode makes webpack to act differently
   // all files are going to be more optimized
@@ -19,6 +15,7 @@ const prodConfig = {
   output: {
     // set a template for hashing output files
     filename: "[name].[contenthash].js",
+    publicPath: "/marketing/latest/",
   },
   plugins: [
     new ModuleFederationPlugin({
