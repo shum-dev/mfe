@@ -14,7 +14,6 @@ if (process.env.NODE_ENV === "development") {
   const devRoot = document.querySelector("#_marketing-dev-root");
 
   if (devRoot) {
-    console.log("mount");
     mount(devRoot);
   }
 }
@@ -22,5 +21,3 @@ if (process.env.NODE_ENV === "development") {
 // we are running through container
 // and we should export the mount
 export { mount };
-
-console.log("[Project] Marketing");

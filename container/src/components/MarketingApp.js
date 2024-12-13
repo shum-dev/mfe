@@ -7,7 +7,6 @@ export default () => {
 
   useEffect(() => {
     if (ref.current) {
-      console.log("[Container] Marketing is mounted");
       mount(ref.current);
     }
   }, []);

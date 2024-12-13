@@ -6,7 +6,6 @@ import Landing from "./components/Landing";
 import Pricing from "./components/Pricing";
 
 export default () => {
-  console.log("MFA Marketing App");
   return (
     <div>
       <StylesProvider>
