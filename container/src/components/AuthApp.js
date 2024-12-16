@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from "react";
 
-import { mount } from "marketing/MarketingApp";
+import { mount } from "auth/AuthApp";
 
 import { useHistory } from "react-router-dom";
 
@@ -13,7 +13,7 @@ export default () => {
     if (ref.current) {
       const { onParentNavigate } = mount(ref.current, {
         onNavigate: ({ pathname: newPath }) => {
-          console.log("[container Marketing] ", newPath);
+          console.log("[container Auth] ", newPath);
           const { pathname } = history.location;
 
           // do nothing if we are already on the newPath
