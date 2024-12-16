@@ -6,9 +6,13 @@ import { createMemoryHistory, createBrowserHistory } from "history";
 import App from "./App";
 
 // Mount function to start up the app
-const mount = (el, { onNavigate, defaultHistory }) => {
+const mount = (el, { onNavigate, defaultHistory, initialPath }) => {
   // use default if provided otherwise create a memoryHistory
-  const history = defaultHistory ?? createMemoryHistory();
+  const history =
+    defaultHistory ??
+    createMemoryHistory({
+      initialEntries: [initialPath],
+    });
 
   // whenever some navigation occures this .listening()
   // function executes any function you have passed in

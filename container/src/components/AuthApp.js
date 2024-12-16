@@ -12,6 +12,7 @@ export default () => {
   useEffect(() => {
     if (ref.current) {
       const { onParentNavigate } = mount(ref.current, {
+        initialPath: history.location.pathname,
         onNavigate: ({ pathname: newPath }) => {
           console.log("[container Auth] ", newPath);
           const { pathname } = history.location;
