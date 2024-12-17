@@ -14,7 +14,6 @@ export default ({ onSignIn }) => {
       const { onParentNavigate } = mount(ref.current, {
         initialPath: history.location.pathname,
         onNavigate: ({ pathname: newPath }) => {
-          console.log("[container Auth] ", newPath);
           const { pathname } = history.location;
 
           // do nothing if we are already on the newPath
@@ -23,7 +22,6 @@ export default ({ onSignIn }) => {
           history.push(newPath);
         },
         onSignIn: () => {
-          console.log("[Container] onSignIn:");
           onSignIn();
         },
       });

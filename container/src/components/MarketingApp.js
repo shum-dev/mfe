@@ -14,7 +14,6 @@ export default () => {
       const { onParentNavigate } = mount(ref.current, {
         initialPath: history.location.pathname,
         onNavigate: ({ pathname: newPath }) => {
-          console.log("[container Marketing] ", newPath);
           const { pathname } = history.location;
 
           // do nothing if we are already on the newPath
