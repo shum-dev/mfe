@@ -4,7 +4,7 @@ import { mount } from "auth/AuthApp";
 
 import { useHistory } from "react-router-dom";
 
-export default () => {
+export default ({ onSignIn }) => {
   const ref = useRef(null);
 
   const history = useHistory();
@@ -21,6 +21,10 @@ export default () => {
           if (pathname === newPath) return;
 
           history.push(newPath);
+        },
+        onSignIn: () => {
+          console.log("[Container] onSignIn:");
+          onSignIn();
         },
       });
 
