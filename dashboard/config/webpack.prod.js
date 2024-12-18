@@ -7,10 +7,6 @@ const commonConfig = require("./webpack.common");
 
 const packg = require("../package.json");
 
-// this variable wiil hold the value of MFE url where it will be deployed to
-// we will get to know exact value for it after we deploy the MFE
-const domain = process.env.PRODUCTION_DOMAIN;
-
 const prodConfig = {
   // changing the mode makes webpack to act differently
   // all files are going to be more optimized
@@ -19,15 +15,14 @@ const prodConfig = {
   output: {
     // set a template for hashing output files
     filename: "[name].[contenthash].js",
-    publicPath: "/container/latest/",
+    publicPath: "/dashboard/latest/",
   },
   plugins: [
     new ModuleFederationPlugin({
-      name: "container",
-      remotes: {
-        marketing: `marketing@${domain}/marketing/latest/remoteEntry.js`,
-        auth: `auth@${domain}/auth/latest/remoteEntry.js`,
-        dashboard: `dashboard@${domain}/dashboard/latest/remoteEntry.js`,
+      name: "dashboard",
+      filename: "remoteEntry.js",
+      exposes: {
+        "./DashboardApp": "./src/bootstrap",
       },
       shared: packg.dependencies,
     }),
